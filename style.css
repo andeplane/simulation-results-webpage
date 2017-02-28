@@ -1,0 +1,39 @@
+body {
+  background-color: #abc;
+  display: grid;
+  grid-template-rows: 150px auto 100px;
+  grid-template-columns: minmax(200px, 3fr) 9fr;
+  grid-template-areas: "header header"
+                       "nav    content"
+                       "footer    footer";
+}
+
+header {
+  grid-area: header;
+  background-color: #000;
+  background-size:     cover;
+  background-image: url(sio2.png);
+
+}
+nav {
+  grid-area: nav;
+  background-color: #999;
+  color: white;
+  padding: 10px;
+}
+
+footer {
+  grid-area: footer;
+  background-color: #aaa;
+}
+
+main {
+  grid-area: content;
+  background-color: #888;
+  padding: 10px;
+  color: white;
+}
+
+select.menu {
+  color: blue;
+}
