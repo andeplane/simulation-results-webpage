@@ -5,7 +5,7 @@ function addSimulation(simulation)
 	htmlObject += "<div class\"parameter-view\"><h3>Parameters:</h3>"
 	for(var parameter in simulation.parameters) {
 		var value = simulation.parameters[parameter]
-		if(value.length > 20) value = value.substr(0,20)+" ..."
+		if(value.length > 30) value = value.substr(0,30)+" ..."
 		htmlObject += parameter+": "+value+"<br>"
 	}
 	htmlObject += "</div><h3>Analysis:</h3>"
@@ -26,7 +26,7 @@ function addFigure(simulationFolder, figure)
 {
 	var htmlObject = "<div class=\"simulation-analysis-figure\">"
 	htmlObject += "<img src=\""+simulationFolder+"/"+figure.src+"\"><br>"
-	htmlObject += figure.caption+"<br>"
+	htmlObject += "<p>"+figure.caption+"</p>"
 	htmlObject += "</div>"
 	return htmlObject
 }

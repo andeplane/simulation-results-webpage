@@ -43,23 +43,38 @@ function generateMenu(simulations)
 
 	var htmlObject = ""
 	for(parameter in allParameters) {
-		htmlObject += parameter+":<br> <select id=\""+parameter+`" class="menu"><option value="all">all</option>`
+		htmlObject += parameter+':<br> <select id="'+parameter+'" class="menu" onchange="update()"><option value="all">all</option>'
 		for(value in allParameters[parameter]) {
-			htmlObject+="<option value=\""+value+"\">"+value+"</option>"
+			htmlObject+='<option value="'+value+'">'+value+'</option>'
 		}
 		htmlObject+="</select><br>"
 	}
 	setContents("nav", htmlObject)
 }
 
+function shouldAddSimulation(simulation)
+{
+	for(var parameter in simulation.parameters) {
+		var htmlObject = document.getElementById(parameter);
+		var value = htmlObject.options[htmlObject.selectedIndex].value;
+
+		if(value!=="all" && value!=simulation.parameters[parameter]) {
+			console.log("Nope because: ", value, "!=", simulation.parameters[parameter])
+			return false
+		}
+	}
+	return true
+}
+
 function update()
 {
-	console.log(allSimulations)
+	console.log("Update")
 	setContents("main", "")
 	for(var i in allSimulations) {
 		var simulation = allSimulations[i]
-		console.log("Adding simulation")
-		addSimulation(simulation)
+		if(shouldAddSimulation(simulation)) {
+			addSimulation(simulation)
+		}
 	}
 }
 

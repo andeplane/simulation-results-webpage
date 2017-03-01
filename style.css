@@ -42,3 +42,10 @@ select.menu {
   background-color: #fff;
   padding: 10px;
 }
+
+.simulation-analysis-figure {
+  display: inline-block
+}
+.simulation-analysis-figure p {
+  text-align: center;
+}
