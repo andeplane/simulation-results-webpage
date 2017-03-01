@@ -38,6 +38,51 @@ select.menu {
   width: 100%;
 }
 
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #212121;
+    cursor: pointer;
+    display: inline-block;
+    font: 14px/20px Roboto, sans-serif;
+    height: 36px;
+    min-width: 72px;
+    outline: 0;
+    overflow: hidden;
+    padding: 7px 27px 7px 7px;
+    text-align: left;
+    text-indent: .01px;
+    text-overflow: ellipsis;
+    text-overflow: '';
+    transition: background-color .2s;
+    vertical-align: middle;
+    white-space: nowrap
+}
+select:focus,
+select:hover {
+    background-color: #f7f7f7
+}
+select:active {
+    background-color: #ebebeb
+}
+select {
+  /* https://developers.google.com/_static/d30774ad07/images/redesign-14/button-down-black.svg */
+    background: #fff url('images/button-down-black.svg') no-repeat right
+}
+select:disabled {
+    background: #f7f7f7 url('images/button-down-grey.svg') no-repeat right;
+    border-color: transparent;
+    color: #bdbdbd;
+    cursor: default
+}
+select:-ms-expand {
+    display: none
+}
+
 .simulation {
   background-color: #fff;
   padding: 10px;
