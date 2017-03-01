@@ -9,46 +9,7 @@ function loadJSON(fileName, callback, simulation) {
 	      	// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
 	        jsonLoadPending--
 	        callback(xobj.responseText, simulation)
-	      } else {
-	      	console.log("faen")
-	      }
-	}
-
-	xobj.onloadend = function() {
-	    if(xobj.status == 404) {
-			console.log("Synd, trist, leit.")
-	    }
-	}
-	
-	xobj.send(null);  
-}
-
-function loadJSON2(fileName, callback, simulation) {   
-	jsonLoadPending++
-	var xobj = new XMLHttpRequest();
-	    xobj.overrideMimeType("application/json")
-	xobj.open('GET', fileName, true) // Replace 'my_data' with the path to your file
-	xobj.onreadystatechange = function () {
-		if (xobj.readyState == 4) {
-            if (xobj.status == 404) {
-                // I can live with that, log it and go on
-                console.log("file missing");
-            }
-        }
-
-		if (xobj.readyState == 4 && xobj.status == "200") {
-			// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-			jsonLoadPending--
-			callback(xobj.responseText, simulation)
-			} else {
-				console.log("faen")
-		}
-	}
-
-	xobj.onloadend = function() {
-    if(xobj.status == 404) 
-        // throw new Error(' replied 404');
-    	console.log("Damnit")
+	      } 
 	}
 	
 	xobj.send(null);  
@@ -129,7 +90,7 @@ function start()
 			allSimulations[simulation.folder] = simulation
 			var jsonFile = simulation.folder+"/analysis.json"
 			console.log(simulation.folder," jsonFile: ", jsonFile)
-			loadJSON2(jsonFile, function(responseText, simulation) {
+			loadJSON(jsonFile, function(responseText, simulation) {
 				var analysisObject = JSON.parse(responseText)
 				simulation.analysis = analysisObject
 				if(jsonLoadPending==0) {
