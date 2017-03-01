@@ -88,6 +88,11 @@ select:-ms-expand {
   padding: 10px;
 }
 
+.simulation-missing {
+  background-color: #aaa;
+  padding: 10px;
+}
+
 .simulation-analysis-figure {
   display: inline-block
 }
