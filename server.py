@@ -17,6 +17,8 @@ class MyHandler(SimpleHTTPRequestHandler):
 		except OSError:
 			if os.path.basename(self.path) == "analysis.json":
 				self.path = "/missing.json"
+			if os.path.basename(self.path) == "manual.json":
+				self.path = "/empty.json"
 				
 		f = self.send_head()
 		if f:

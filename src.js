@@ -22,11 +22,13 @@ var allSimulations = {}
 function setContents(id, html)
 {
 	document.getElementById(id).innerHTML = html;
+	MathJax.Hub.Typeset()
 }
 
 function addContent(id, html)
 {
 	document.getElementById(id).innerHTML += html;
+	MathJax.Hub.Typeset()
 }
 
 function generateMenu(simulations)
@@ -89,10 +91,16 @@ function start()
 			var simulation = simulations[i]
 			allSimulations[simulation.folder] = simulation
 			var jsonFile = simulation.folder+"/analysis.json"
-			console.log(simulation.folder," jsonFile: ", jsonFile)
 			loadJSON(jsonFile, function(responseText, simulation) {
-				var analysisObject = JSON.parse(responseText)
-				simulation.analysis = analysisObject
+				simulation.analysis = JSON.parse(responseText)
+				if(jsonLoadPending==0) {
+					update()
+				}
+			}, simulation)
+
+			jsonFile = simulation.folder+"/manual.json"
+			loadJSON(jsonFile, function(responseText, simulation) {
+				simulation.manualAnalysis = JSON.parse(responseText)
 				if(jsonLoadPending==0) {
 					update()
 				}
