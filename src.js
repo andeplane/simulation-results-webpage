@@ -22,13 +22,11 @@ var allSimulations = {}
 function setContents(id, html)
 {
 	document.getElementById(id).innerHTML = html;
-	MathJax.Hub.Typeset()
 }
 
 function addContent(id, html)
 {
 	document.getElementById(id).innerHTML += html;
-	MathJax.Hub.Typeset()
 }
 
 function generateMenu(simulations)
@@ -81,6 +79,7 @@ function update()
 			addSimulation(simulation)
 		}
 	}
+	MathJax.Hub.Typeset()
 }
 
 function start()
