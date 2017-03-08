@@ -50,6 +50,7 @@ function generateMenu(simulations)
 		for(value in allParameters[parameter]) {
 			htmlObject+='<option value="'+value+'">'+value+'</option>'
 		}
+		htmlObject+='<option value="unknown">unknown</option>'
 		htmlObject+="</select><br>"
 	}
 	setContents("nav", htmlObject)
@@ -57,14 +58,20 @@ function generateMenu(simulations)
 
 function shouldAddSimulation(simulation)
 {
-	for(var parameter in simulation.parameters) {
-		var htmlObject = document.getElementById(parameter);
-		var value = htmlObject.options[htmlObject.selectedIndex].value;
-
-		if(value!=="all" && value!=simulation.parameters[parameter]) {
-			console.log("Nope because: ", value, "!=", simulation.parameters[parameter])
-			return false
+	for(var parameter in allParameters) {
+		var htmlObject = document.getElementById(parameter)
+		var value = htmlObject.options[htmlObject.selectedIndex].value
+		if(value==="all") continue
+		if(value==="unknown") {
+			console.log("value = unknown, ", simulation.staticname, " has parameter: ", simulation.parameters[parameter])
 		}
+		if(value==="unknown") {
+			if(simulation.parameters[parameter] !== undefined) return false
+		} else {
+			if(simulation.parameters[parameter] === undefined) return false
+			if(value!=simulation.parameters[parameter]) return false
+		}
+
 	}
 	return true
 }
